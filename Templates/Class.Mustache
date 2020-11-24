@@ -1,20 +1,12 @@
-﻿class {{ Name }}({{ BaseString }}):
+﻿export class {{ Name }} {{ BaseString }} {
+    
+    {{ #Fields }}
+    {{ . }}
+    {{ /Fields }}
 
-{{ #CommentString }}
-    """
-    {{ CommentString }}
-    """
-{{ /CommentString }}
-{{ #Fields}}
-    {{ Generate }}
-{{ /Fields }}
-{{ #Constructor }}
-    {{ Generate }}
-{{ /Constructor }}
-{{ ^Constructor }}
-    def __init__(self):
-        pass
-{{ /Constructor }}
-{{ #Methods }}
-    {{ Generate }}
-{{ /Methods }}
+    {{ Constructor }}
+
+    {{ #Methods }}
+    {{ . }}
+    {{ /Methods }}
+}

@@ -2,14 +2,29 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using TSCodeBuilder.Helpers;
 
 namespace TSCodeBuilder.Expressions
 {
-    class TSMethodInvoke : MethodInvoke
+    public class TSMethodInvoke : MethodInvoke
     {
-        public TSMethodInvoke(string name, params string[] args)
+        public TSMethodInvoke(string methodName, params string[] args)
         {
-            this.MethodName = name;
+            methodName.ThrowIfNullOrEmpty("Failed to create method invoke expression because method name is null or empty");
+            this.MethodName = methodName;
+            this.WithArguments(args);
+        }
+
+        public TSMethodInvoke WithArgument(string arg)
+        {
+            this.Arguments.Add(arg);
+            return this;
+        }
+
+        public TSMethodInvoke WithArguments(IEnumerable<string> args)
+        {
+            this.Arguments.AddRange(args);
+            return this;
         }
     }
 }

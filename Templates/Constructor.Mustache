@@ -1,5 +1,10 @@
-﻿def __init__({{ Arguments }}):
-    {{ StatementsString }}
-    {{ ^StatementsString }}
-    pass
-    {{ /StatementsString }}
+﻿{{ #ArgumentsString }}
+constructor({{ ArgumentsString }}) {
+    {{ #Statements }}
+    {{ . }}
+    {{ /Statements }}
+}
+{{ /ArgumentsString }}
+{{ ^ArgumentsString }}
+constructor()
+{{ /ArgumentsString }}
